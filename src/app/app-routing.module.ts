@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfiloComponent } from './profilo/profilo.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   {
     path: 'profilo',
-    component: ProfiloComponent
+    component: ProfiloComponent,
+    canActivate: [AuthGuard]
   },
 ];
 

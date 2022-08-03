@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -8,12 +9,17 @@ import { AuthService } from '../auth.service';
 })
 export class HomeComponent implements OnInit {
   logged = false
+  loggedSub!:Subscription;
   constructor(private auth:AuthService) { }
 
   ngOnInit(): void {
-    this.auth.isLogged.subscribe((res)=>{
-      this.logged = res
+    this.loggedSub = this.auth.isLogged.subscribe((res)=>{
+      this.logged = res!=false
     })
+  }
+
+  ngOnDestroy(): void {
+    this.loggedSub.unsubscribe()
   }
 
 }
