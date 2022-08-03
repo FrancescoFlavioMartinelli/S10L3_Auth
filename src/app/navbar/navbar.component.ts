@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
       } else {
         this.nome = false
         this.logged = false
-        // this.router.navigate(['/login']);
       }
     })
   }
